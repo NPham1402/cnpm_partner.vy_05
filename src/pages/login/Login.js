@@ -11,19 +11,22 @@ const PartnerLogin = () => {
   function Login() {
     axios
       .post(
-        "https://gxyvy04g01backend-production.up.railway.app/Partner/Login",
+        "https://gxyvy04g01backend-production.up.railway.app/Partner/LoginNguyenApart",
         {
           PARTNER_EMAIL: getEmail,
           PARTNER_PASSWORD: getPassword,
+          APP: "APART",
         }
       )
       .then((res) => {
         if (res.data.STATUS) {
+          console.log(res.data.data.PARTNER_ID);
+          setCookies("id", res.data.data.PARTNER_ID);
           setCookies("Partner", res.data.TOKEN, {
-            path: "/Parent",
+            path: "/",
             maxAge: res.data.EXPIRED_TIME,
           });
-          Navigate("/Partner/Profile");
+          Navigate("/");
         } else {
           window.alert(res.data.ERROR);
         }
@@ -99,7 +102,7 @@ const PartnerLogin = () => {
                   <div>
                     <p>
                       Not yet a partner?&emsp;
-                      <Link to="/Partner/Register">
+                      <Link to="/Register">
                         <b className="colorlogo">Register here</b>
                       </Link>
                     </p>

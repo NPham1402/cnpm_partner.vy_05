@@ -8,33 +8,34 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Chartweek from "./Chartweek";
-const datamonth = [
-  { name: "Tháng 0", Total:   5000},
-  { name: "Tháng 1", Total:  3000+ Math.round(Math.random() * (9000 - 3000))},
-  { name: "Tháng 2", Total:  3000+ Math.round(Math.random() * (9000 - 3000))},
-  { name: "Tháng 3", Total:  3000+ Math.round(Math.random() * (9000 - 3000))},
-  { name: "Tháng 4", Total:  3000+ Math.round(Math.random() * (9000 - 3000))},
-  { name: "Tháng 5", Total:  3000+ Math.round(Math.random() * (9000 - 3000))},
-  { name: "Tháng 6", Total:  3000+ Math.round(Math.random() * (9000 - 3000))},
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Chart = ({ aspect, title,type,dara }) => {
-  return (
-    <>
-    {type?
-    <div className="chart">
-    <div className="title">{title}</div>
-      <Chartweek/>
-  </div>
-        
+
+const Chart = ({ aspect, title,type,id }) => {
+    const [da,setData]=useState()    
+     useEffect(() => {
+     axios
+    .get("http://localhost:3001/thongke2",{headers:{id:id}})
+    .then((e) => {
+        console.log(e.data)
+      setData(e.data)
   
-    :    <div className="chart">
+    })
+    .then(function (error) {
+      console.log(error);
+    });
+  }, [])
+  
+return (
+<>
+        <div className="chart">
     <div className="title">{title}</div>
     <ResponsiveContainer width="100%" aspect={aspect}>
       <AreaChart
         width={730}
         height={250}
-        data={datamonth}
+        data={da}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
         <defs>
           <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
@@ -55,7 +56,7 @@ const Chart = ({ aspect, title,type,dara }) => {
       </AreaChart>
     </ResponsiveContainer>
   </div>
-}
+
 
     </>
     );  

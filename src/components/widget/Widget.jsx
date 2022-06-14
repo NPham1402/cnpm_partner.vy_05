@@ -5,7 +5,7 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
-const Widget = ({ type }) => {
+const Widget = ({ type,number }) => {
   let data;
 
   //temporary
@@ -16,7 +16,7 @@ const Widget = ({ type }) => {
       data = {
         title: "NGƯỜI DÙNG",
         isMoney: false,
-        value:21,
+        value:number,
         link: "Xem tất cả người dùng",
         icon: (
           <PersonOutlinedIcon
@@ -34,7 +34,7 @@ const Widget = ({ type }) => {
         title: "ĐƠN HÀNG",
         isMoney: false,
         link: "Xem tất cả các đơn đặt hàng",
-         value:35,
+         value:number,
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -48,9 +48,9 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "KIẾM TIỀN",
+        title: "Doanh Thu",
         isMoney: true,
-         value:(3000+ Math.random() * (9000 - 3000)).toFixed(2),
+         value:number.toLocaleString(),
         link: "Xem thu nhập ròng",
         icon: (
           <MonetizationOnOutlinedIcon
@@ -62,9 +62,9 @@ const Widget = ({ type }) => {
       break;
     case "balance":
       data = {
-        title: "SỰ CÂN BẰNG",
+        title: "Lợi Nhuận",
         isMoney: true,
-        value:(3000+ Math.random() * (9000 - 3000)).toFixed(2),
+        value:(number*80/100).toLocaleString(),
         link: "Xem chi tiết",
         icon: (
           <AccountBalanceWalletOutlinedIcon

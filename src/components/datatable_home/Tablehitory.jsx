@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { historyColumns, userRows } from "../../datatablesource";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import axios from 'axios';
+import Chart from '../chart/chartroom';
 const Tablehitory = () => {
       const [data, setData] = useState(userRows);
   const location=useLocation()
   console.log(location.state.id)
+      useEffect(e=>{
+     axios
+    .get("http://localhost:3001/history", { headers:{id:location.state.id} })
+    .then((e) => {
+      setData(e.data)
+  
+    })
+    .then(function (error) {
+      console.log(error);
+    });
+      },[])
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
@@ -24,7 +37,6 @@ const Tablehitory = () => {
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}>
-              
             </div>
           </div>
         );
@@ -32,22 +44,27 @@ const Tablehitory = () => {
     },
   ];
     return (
+     <>
      <div className="datatable">
       <div className="datatableTitle">
-      Thêm địa chỉ liên hệ mới
-        <Link to="/users/new" className="link">
-          Thêm mới
-        </Link>
+        lịch sử
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={historyColumns.concat(actionColumn)}
         pageSize={9}
+           getRowId={row=>row}
         rowsPerPageOptions={[9]}
         checkboxSelection
       />
+      
+      
     </div>
+         <Chart aspect={3 / 1} title="Doanh thu theo từng tháng của phòng" type={true} id={location.state.id}/>
+
+     </>
+     
     );
 };
 

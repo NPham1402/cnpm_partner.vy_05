@@ -23,10 +23,11 @@ const New = ({ inputs, title }) => {
       SO_PHONG_TRONG:infor.Number_Room,
       TEN_PHONG:infor.Name,
       SO_NGUOI:infor.Number_people,
-      MAXIMUM_EXTRA_BEDS:infor.MAXMIUM_EXTRA_BEDS,
+      MAXIMUM_EXTRA_BEDS:infor.MAXIMUM_EXTRA_BEDS,
       PRICE_OF_EXTRA_BED:infor.PRICE_OF_EXTRA_BED,
       TIEN_NGHI:infor.TIEN_NGHI,
       PRICE_PHONG:infor.price,
+      link:infor.link,
     };
     console.log(headers);
 
@@ -57,6 +58,15 @@ const New = ({ inputs, title }) => {
                   <input onChange={e=>handlechange(e,input.id)} type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
+                <div className="formInput">
+                  <label>
+                    Link hình
+                  </label>
+                  <input onChange={e=>handlechange(e,"link")} type="text" placeholder={"Link hình"} />
+                  <button onClick={e=>{window.open("https://cloudinary.com/console/c-f91fcdd89730f287bfa741ec9e6ccf/media_library/folders/home")}}>Thêm Hình</button>
+                </div>
+               <div className="formInput">
+                </div>
               <br/>              
               <button onClick={handleclick}>Gửi</button>
             </form>

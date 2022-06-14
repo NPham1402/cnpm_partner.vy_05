@@ -2,11 +2,14 @@ import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import HouseIcon from '@mui/icons-material/House';
 import { Link } from "react-router-dom";
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { useCookies } from "react-cookie";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const [getCookies, setCookies] = useCookies();
   return (
     <div className="sidebar">
       <div className="top">
@@ -31,6 +34,10 @@ const Sidebar = () => {
               <span>Căn hộ</span>
             </li>
           </Link>
+           <li>
+              <CardGiftcardIcon className="icon" />
+              <span><a src={"https://voucher.votuan.xyz/partner/auth?token="+getCookies.Partner+"&appId=vy04"}>Voucher</a></span>
+            </li>
           {/* <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>

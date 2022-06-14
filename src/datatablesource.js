@@ -63,9 +63,61 @@ export const productsColumns = [
     width: 90,
   },
   {
+    field: "SO_PHONG_TRONG",
+    headerName: "Số phòng trống",
+    width: 150,
+  },
+  {
     field: "TIEN_NGHI",
     headerName: "Tiện lợi",
     width: 300,
+  },
+  {
+    field: "status",
+    headerName: "Trạng thái",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.status}`}>Active</div>
+      );
+    },
+  },
+];
+export const historyColumns = [
+  { field: "ID_ROOMTYPE", headerName: "ID", width: 100 },
+  {
+    field: "SO_LUONG_PHONG",
+    headerName: "Số lượng phòng:",
+    width: 230,
+    // renderCell: (params) => {
+    //   return (
+    //     <div className="cellWithImg">
+    //       <img className="cellImg" src={params.row.img} alt="avatar" />
+    //       {params.row.username}
+    //     </div>
+    //   );
+    // },
+  },
+  {
+    field: "PAY_TIME",
+    headerName: "Thời gian thanh toán:",
+    width: 150,
+  },
+
+  {
+    field: "NGAY_NHAN_PHONG",
+    headerName: "Ngày nhận phòng:",
+    width: 100,
+  },
+  {
+    field: "NGAY_TRA_PHONG",
+    headerName: "Ngày trả phòng:",
+    width: 150,
+  },
+  {
+    field: "FINAL_PRICE",
+    headerName: "Tổng tiền",
+    width: 230,
   },
   {
     field: "status",

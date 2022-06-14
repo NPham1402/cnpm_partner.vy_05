@@ -8,6 +8,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import "./PartnerRegisterAndLogin.css";
 export default function PartnerRegister() {
   const [getCookies, setCookies] = useCookies();
   const [getPageId, setPageId] = useState(1);
@@ -29,15 +30,16 @@ export default function PartnerRegister() {
           PARTNER_PASSWORD: getPassword,
           PARTNER_NAME: getPartnerName,
           APP_ID: getAppID.Services,
+          APP: "APART",
         }
       )
       .then((response) => {
         if (response.data.STATUS) {
           setCookies("Partner", response.data.TOKEN, {
             maxAge: response.data.EXPIRED_TIME,
-            path: "/Partner",
+            path: "/",
           });
-          Navigate("/Partner/Profile");
+          Navigate("/");
           return;
         } else {
           window.alert(response.data.ERROR);

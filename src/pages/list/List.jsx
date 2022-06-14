@@ -5,14 +5,16 @@ import { useState } from "react";
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 import Datatable from "../../components/datatable/Datatable"
+import { useCookies } from "react-cookie";
 
 
 const List = () => {
      const [data, setData] = useState([]);
+  const [getCookies, setCookies] = useCookies();
      const [one, setone] = useState();
  useEffect(()=>{
      const headers = {
-    id: "PN1",
+    id: getCookies.id,
   };
   axios
     .get("http://localhost:3001/home", { headers })
