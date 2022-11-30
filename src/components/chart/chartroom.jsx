@@ -14,18 +14,18 @@ import axios from "axios";
 
 const Chart = ({ aspect, title,type,id }) => {
     const [da,setData]=useState()    
-     useEffect(() => {
-     axios
-    .get("http://localhost:3001/thongke2",{headers:{id:id}})
-    .then((e) => {
-        console.log(e.data)
-      setData(e.data)
+  //    useEffect(() => {
+  //    axios
+  //   .get("http://localhost:3001/thongke2",{headers:{id:id}})
+  //   .then((e) => {
+  //       console.log(e.data)
+  //     setData(e.data)
   
-    })
-    .then(function (error) {
-      console.log(error);
-    });
-  }, [])
+  //   })
+  //   .then(function (error) {
+  //     console.log(error);
+  //   });
+  // }, [])
   
 return (
 <>

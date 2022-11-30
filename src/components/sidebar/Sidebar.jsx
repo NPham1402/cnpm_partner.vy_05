@@ -1,12 +1,13 @@
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import HouseIcon from '@mui/icons-material/House';
+import PeopleIcon from '@mui/icons-material/People';
 import { Link } from "react-router-dom";
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import { useCookies } from "react-cookie";
-
+import ReceiptIcon from '@mui/icons-material/Receipt';
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   const [getCookies, setCookies] = useCookies();
@@ -28,16 +29,24 @@ const Sidebar = () => {
             </Link>
           </li>
           <p className="title">DANH SÁCH</p>
+         <Link to="/users/users" style={{ textDecoration: "none" }}>
+            <li>
+              <PeopleIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <HouseIcon className="icon" />
-              <span>Căn hộ</span>
+              <span>Product</span>
             </li>
           </Link>
-           <li>
-              <CardGiftcardIcon className="icon" />
-              <span><a src={"https://voucher.votuan.xyz/partner/auth?token="+getCookies.Partner+"&appId=vy04"}>Voucher</a></span>
+          <Link to="/payment" style={{ textDecoration: "none" }}>
+           <li> 
+              <ReceiptIcon className="icon" />
+              <span>Receipt</span>
             </li>
+          </Link>
           {/* <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>

@@ -1,18 +1,27 @@
-import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns } from "../../datatablesource";
-import { Link ,useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { userColumns } from "../../datatablesource";
+import InputModal from "../form-modal/InputModal";
+import FormNhapHang from "../form-modal/type-form/FormNhapHang";
+import "./datatable.scss";
 
 const Datatable = (props) => {
   const [data, setData] = useState([]);
-    const navigate = useNavigate();
-  useEffect(()=>{
+  const [showHide, setShowHide] = useState(false)
+
+  const navigate = useNavigate();
+  useEffect(() => {
     setData(props.data)
-  },[props])
+  }, [props])
   const handleDelete = (id) => {
     setData(data.filter((item) => item.ID_HOME !== id));
   };
+  const handleNhapHang = (id) => {
+    console.log(id)
+    setShowHide(true)
+  }
+  console.log(FormNhapHang);
   const actionColumn = [
     {
       field: "action",
@@ -21,7 +30,12 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-              <div className="viewButton" onClick={ e=>{ navigate("/users/single", { state: { id:params.row.ID_HOME,ten:params.row.TEN,dien_tich:params.row.DIEN_TICH,sotang:params.row.SO_TANG, } });}} style={{ textDecoration: "none" }}>Chi tiết</div>
+            <div className="viewButton" onClick={e => { navigate("/users/single", { state: { id: params.row.ID_HOME, ten: params.row.TEN, dien_tich: params.row.DIEN_TICH, sotang: params.row.SO_TANG, } }); }} style={{ textDecoration: "none" }}>Chi tiết</div>
+            <div
+              className="deleteButton"
+              onClick={() => handleNhapHang(params.row._id)}>
+              Nhập
+            </div>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.ID_HOME)}>
@@ -35,19 +49,19 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Căn hộ
+        Product
         <Link to="/users/new" className="link">
           Thêm mới
         </Link>
       </div>
+      <InputModal open={showHide} setOpen={setShowHide} title={'Nhập hàng'} typeForm={<FormNhapHang />} />
       <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
-        getRowId={row=>row.ID_HOME}
+        getRowId={row => row._id}
         rowsPerPageOptions={[9]}
-        checkboxSelection
       />
     </div>
   );

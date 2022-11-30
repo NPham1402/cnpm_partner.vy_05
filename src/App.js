@@ -4,6 +4,7 @@ import List from "./pages/list/List";
 import List2 from "./pages/list-2/List2";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
+import 'antd/dist/antd.css';
 import NewRoom from "./pages/new/New_room/NewRoom";
 import Login from "./pages/login/Login";
 import Register from "./pages/Register/GroupRegister";
@@ -16,6 +17,8 @@ import Tablehitory from "./components/datatable_home/Tablehitory";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useCookies } from "react-cookie";
+import UsersList from "./pages/user/UserList";
+import Payment from "./pages/payment";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -28,9 +31,9 @@ function App() {
     clientSecret: "{{CLIENT_SECRET}}",
   };
   function LoginState({ children }) {
-    if (!getCookies.Partner) {
-      return <Navigate to="/Login" />;
-    }
+    // if (!getCookies.Partner) {
+    //   return <Navigate to="/Login" />;
+    // }
     return children;
   }
   return (
@@ -79,6 +82,14 @@ function App() {
                   </LoginState>
                 }
               />
+                  <Route
+                path="users"
+                element={
+                  <LoginState>
+                    <UsersList inputs={userInputs} title="Add new user" />
+                  </LoginState>
+                }
+              />
               <Route
                 path="room"
                 element={
@@ -109,6 +120,7 @@ function App() {
               />
             </Route>
             <Route path="/Login" element={<Login />}></Route>
+            <Route path="/payment" element={<Payment />}></Route>
             <Route path="/Register" element={<Register />}></Route>
           </Route>
         </Routes>

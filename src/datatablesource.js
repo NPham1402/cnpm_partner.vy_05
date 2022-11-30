@@ -1,9 +1,12 @@
+import dayjs from "dayjs";
+import generateThousand from "./ultis/generateThousand";
+
 export const userColumns = [
-  { field: "ID_HOME", headerName: "ID", width: 100, hiden: true },
+  { field: "_id", headerName: "ID", hiden: true },
   {
-    field: "TEN",
-    headerName: "Tên",
-    width: 230,
+    field: "productName",
+    headerName: "Product Name",
+  flex: 1
     // renderCell: (params) => {
     //   return (
     //     <div className="cellWithImg">
@@ -14,26 +17,24 @@ export const userColumns = [
     // },
   },
   {
-    field: "DIEN_TICH",
-    headerName: "Diện Tích",
-    width: 230,
+    field: "quanity",
+    headerName: "Quanity",
+    
   },
 
   {
-    field: "SO_TANG",
-    headerName: "Số Tầng",
-    width: 200,
+    field: "description",
+    headerName: "Description",
+  },
+   {
+    field: "quanity",
+    headerName: "Quality",
   },
   {
-    field: "status",
-    headerName: "Trạng thái",
-    width: 160,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.status}`}>Active</div>
-      );
-    },
+    field: "category",
+    headerName: "Category",
   },
+  
 ];
 
 export const productsColumns = [
@@ -83,6 +84,109 @@ export const productsColumns = [
     },
   },
 ];
+
+
+export const billColumns = [
+  { field: "_id", headerName: "ID", hiden: true ,flex:1 },
+  {
+    field: "datePaid",
+    headerName: "Date",
+    renderCell: (params) => {
+      console.log(params)
+      return (
+        <div className="cellWithImg">
+          {dayjs(params.datePaid).format("DD-MM-YYYY")}
+        </div>
+      );
+    },   
+    flex:1
+  },
+  {
+    field: "totalPrice",
+    headerName: "Total Price",
+      renderCell: (params) => {
+      return (
+        <div className="cellWithImg font-bold text-[16px]">
+          {generateThousand(params.value)} VND
+        </div>
+      );
+    },
+    flex:1
+  },
+    {
+    field: "products",
+    headerName: "product",
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg" >
+          <ul>
+          {params.value.map(item=>{
+            return <li key={item._id}>Name: {item.productName} - {item.quantity} Unit</li>
+          })}
+          </ul>
+        </div>
+      );
+    }, 
+    flex:1
+  },
+  // {
+  //   field: "address",
+  //   headerName: "Address", 
+  // },
+  // {
+  //   field: "status",
+  //   headerName: "Trạng thái",
+  //   width: 160,
+  //   renderCell: (params) => {
+  //     return (
+  //       <div className={`cellWithStatus ${params.row.status}`}>Active</div>
+  //     );
+  //   },
+  // },
+];
+
+export const usersColumns = [
+  { field: "_id", headerName: "ID", hiden: true , },
+  {
+    field: "userName",
+    headerName: "User Name",
+    // renderCell: (params) => {
+    //   return (
+    //     <div className="cellWithImg">
+    //       <img className="cellImg" src={params.row.img} alt="avatar" />
+    //       {params.row.username}
+    //     </div>
+    //   );
+    // },
+  },
+  {
+    field: "email",
+    headerName: "Email",
+  },
+
+  {
+    field: "phoneNumber",
+    headerName: "Phone Number", 
+  },
+  
+  // {
+  //   field: "address",
+  //   headerName: "Address", 
+  // },
+  // {
+  //   field: "status",
+  //   headerName: "Trạng thái",
+  //   width: 160,
+  //   renderCell: (params) => {
+  //     return (
+  //       <div className={`cellWithStatus ${params.row.status}`}>Active</div>
+  //     );
+  //   },
+  // },
+];
+
+
+
 export const historyColumns = [
   { field: "ID_ROOMTYPE", headerName: "ID", width: 100 },
   {
