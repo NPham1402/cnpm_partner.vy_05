@@ -13,7 +13,6 @@ const List = () => {
     axios
       .get("http://localhost:1402/products/all", { headers })
       .then((e) => {
-        console.log(e)
         setData(e.data.data)
       })
       .then(function (error) {

@@ -1,13 +1,31 @@
-import "./single.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart";
-import List from "../../pages/list-2/List2";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Chart from "../../components/chart/Chart";
+import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import List from "../../pages/list-2/List2";
+import "./single.scss";
 
 const Single = () => {
-  const location =useLocation();
-  
+  const location = useLocation();
+  const [data, setData] = useState();
+  console.log('.//', process.env.REACT_APP_TOKEN_CONFIRM);
+  useEffect(() => {
+    async function DataProducts() {
+      const response = await axios({
+        url: `http://localhost:1402/products/by_id/${location.state.id}`,
+        method: "get",
+        headers: {
+          token: 'NguyenHoangTam0900990900909099012312',
+        }
+      })
+      setData(await response.data.data);
+      console.log(data);
+    }
+    DataProducts();
+  }, [])
+
   return (
     <div className="single">
       <Sidebar />
@@ -24,31 +42,31 @@ const Single = () => {
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{location.state.ten}</h1>
+                <h1 className="itemTitle">{data ? data.productName : null}</h1>
                 <div className="detailItem">
                   <span className="itemKey">ID:</span>
                   <span className="itemValue">{location.state.id}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Khu vực:</span>
-                  <span className="itemValue">{location.state.dien_tich}</span>
+                  <span className="itemKey">Tên sản phẩm:</span>
+                  <span className="itemValue">{data ? data.productName : null}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Tầng:</span>
+                  <span className="itemKey">Số lượng:</span>
                   <span className="itemValue">
-                    {location.state.sotang}
+                    {data ? data.quanity : null}
                   </span>
                 </div>
               </div>
             </div>
           </div>
           <div className="right">
-            <Chart aspect={3 / 1} title="Doanh thu trong 6 tháng" type={true}/>
+            <Chart aspect={3 / 1} title="Doanh thu trong 6 tháng" type={true} />
           </div>
         </div>
         <div className="bottom">
-        <h1 className="title">Giao dịch cuối cùng</h1>
-          <List id={location.state.id}/>
+          <h1 className="title">Giao dịch cuối cùng</h1>
+          <List id={location.state.id} />
         </div>
       </div>
     </div>
