@@ -14,16 +14,17 @@ const Login = () => {
   const submit = async (values) => {
     if (CheckEmail(values.email) && values.password) {
       const response = await axios({
-        url: "http://localhost:1402/user/login_admin", headers: {
+        url: "http://localhost:1402/users/login_admin", headers: {
           token: process.env.REACT_APP_TOKEN_CONFIRM
         },
+        method: "post",
         body: {
           email: values.email,
           password: values.password
         }
       })
-      if (await response.data.data.status) {
-        localStorage.setItem("adminId", response.data.data._id);
+      if (await response.data.status) {
+        localStorage.setItem("adminId", response.data.status._id);
         apiNotification.open({
           message: "Chuyển hướng đến trang admin",
           description: "Đăng nhập thành công",

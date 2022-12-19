@@ -32,7 +32,7 @@ function App() {
   };
   function LoginState({ children }) {
     if (!localStorage.getItem("adminId")) {
-      navigate("/login");
+      window.location.replace("/login")
     }
     return children;
   }
@@ -41,7 +41,7 @@ function App() {
       <Routes>
         <Route path="/">
           <Route
-            index
+            path="/"
             element={
               <LoginState>
                 <Home />
@@ -118,10 +118,11 @@ function App() {
               }
             />
           </Route>
-          <Route path="/Login" element={<Login />}></Route>
-          <Route path="/payment" element={<Payment />}></Route>
-          <Route path="/Register" element={<Register />}></Route>
+
         </Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/payment" element={<Payment />}></Route>
+        <Route path="/Register" element={<Register />}></Route>
       </Routes>
     </div>
   );

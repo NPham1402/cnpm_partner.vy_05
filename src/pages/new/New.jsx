@@ -22,12 +22,12 @@ const New = ({ inputs, title }) => {
     console.log(e)
     const headers = { ...e };
     console.log(headers)
-    axios.post('http://localhost:1402/products', { ...e })
+    axios.post('http://localhost:1402/products/create', { ...e })
       .then(function (response) {
-
+        window.location.assign("/users")
       })
       .catch(function (error) {
-        console.log(error);
+
       });
   }
 
