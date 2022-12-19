@@ -9,7 +9,7 @@ import "./datatable.scss";
 const Datatable = (props) => {
   const [data, setData] = useState([]);
   const [showHide, setShowHide] = useState(false)
-
+  const [id, setId] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     setData(props.data)
@@ -19,6 +19,7 @@ const Datatable = (props) => {
   };
   const handleNhapHang = (id) => {
     console.log(id)
+    setId(id)
     setShowHide(true)
   }
   console.log(FormNhapHang);
@@ -30,7 +31,7 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <div className="viewButton" onClick={e => { navigate("/products/single", { state: { id: params.row._id } }); }} style={{ textDecoration: "none" }}>Chi tiết</div>
+            {/* <div className="viewButton" onClick={e => { navigate("/products/single", { state: { id: params.row._id } }); }} style={{ textDecoration: "none" }}>Chi tiết</div> */}
             <div
               className="deleteButton"
               onClick={() => handleNhapHang(params.row._id)}>
@@ -54,7 +55,7 @@ const Datatable = (props) => {
           Thêm mới
         </Link>
       </div>
-      <InputModal open={showHide} setOpen={setShowHide} title={'Nhập hàng'} typeForm={<FormNhapHang />} />
+      <InputModal open={showHide} id={id} setOpen={setShowHide} title={'Nhập hàng'} typeForm={<FormNhapHang id={id} />} />
       <DataGrid
         className="datagrid"
         rows={data}

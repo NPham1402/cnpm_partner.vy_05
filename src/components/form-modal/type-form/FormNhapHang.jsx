@@ -2,7 +2,7 @@ import { Button, Col, Form, Input, Row, Select } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-const FormNhapHang = () => {
+const FormNhapHang = (props) => {
     const [getData, setGetData] = useState(null)
     useEffect(() => {
         axios
@@ -19,21 +19,45 @@ const FormNhapHang = () => {
     }, [])
     const la = [
         {
-            value: 'jack',
-            label: 'Jack',
+            value: '1',
+            label: 'cong ty lam music',
         },
         {
-            value: 'lucy',
-            label: 'Lucy',
+            value: '2',
+            label: 'cong ty thien long',
         },
         {
-            value: 'tom',
-            label: 'Tom',
+            value: '3',
+            label: 'cong ty thanh thai',
+        },
+        {
+            value: '4',
+            label: 'cong ty pham nguyen',
+        },
+        {
+            value: '5',
+            label: 'cong ty huy hoang',
+        },
+        {
+            value: '6',
+            label: 'cong ty thanh tam',
+        },
+        {
+            value: '7',
+            label: 'cong ty thanh thai',
+        },
+        {
+            value: '8',
+            label: 'cong ty thanh thai',
+        },
+        {
+            value: '9',
+            label: 'cong ty thanh thai',
         },
     ]
     return (
         <Form
-            onFinish={values => console.log(values)}>
+            onFinish={values => axios.post(`http://localhost:1402/products/addquanity/${props.id}`, { values })}>
             <Form.Item name="providerId" label="Provider" rules={[{ required: true, message: 'Required' }]} >
                 <Select showSearch name="providerId" options={la}>
                 </Select>

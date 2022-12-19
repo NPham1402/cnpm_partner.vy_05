@@ -1,22 +1,22 @@
-import "./widget.scss";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import "./widget.scss";
 
-const Widget = ({ type,number }) => {
+const Widget = ({ type, number }) => {
   let data;
 
   //temporary
-  const diff = (1+ Math.random() * (100 - 1)).toFixed();
+  const diff = (1 + Math.random() * (100 - 1)).toFixed();
 
   switch (type) {
     case "user":
       data = {
         title: "NGƯỜI DÙNG",
         isMoney: false,
-        value:number,
+        value: (Math.floor(Math.random() * (500 - 140)) + 140).toLocaleString(),
         link: "Xem tất cả người dùng",
         icon: (
           <PersonOutlinedIcon
@@ -34,7 +34,7 @@ const Widget = ({ type,number }) => {
         title: "ĐƠN HÀNG",
         isMoney: false,
         link: "Xem tất cả các đơn đặt hàng",
-         value:number,
+        value: Math.floor(Math.random() * (500 - 100)) + 100,
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -50,7 +50,7 @@ const Widget = ({ type,number }) => {
       data = {
         title: "Doanh Thu",
         isMoney: true,
-         value:number.toLocaleString(),
+        value: (Math.floor(Math.random() * (50000000 - 5000000)) + 5000000).toLocaleString() + " VND",
         link: "Xem thu nhập ròng",
         icon: (
           <MonetizationOnOutlinedIcon
@@ -64,7 +64,7 @@ const Widget = ({ type,number }) => {
       data = {
         title: "Lợi Nhuận",
         isMoney: true,
-        value:(number*80/100).toLocaleString(),
+        value: (Math.floor(Math.random() * (20000000 - 2000000)) + 2000000).toLocaleString() + " VND",
         link: "Xem chi tiết",
         icon: (
           <AccountBalanceWalletOutlinedIcon
