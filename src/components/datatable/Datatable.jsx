@@ -30,7 +30,7 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <div className="viewButton" onClick={e => { navigate("/users/single", { state: { id: params.row._id } }); }} style={{ textDecoration: "none" }}>Chi tiết</div>
+            <div className="viewButton" onClick={e => { navigate("/products/single", { state: { id: params.row._id } }); }} style={{ textDecoration: "none" }}>Chi tiết</div>
             <div
               className="deleteButton"
               onClick={() => handleNhapHang(params.row._id)}>
@@ -50,7 +50,7 @@ const Datatable = (props) => {
     <div className="datatable">
       <div className="datatableTitle">
         Product
-        <Link to="/users/new" className="link">
+        <Link to="/products/new" className="link">
           Thêm mới
         </Link>
       </div>

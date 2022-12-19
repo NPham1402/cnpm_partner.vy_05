@@ -56,7 +56,7 @@ function App() {
               </LoginState>
             }
           />
-          <Route path="users">
+          <Route path="products">
             <Route
               index
               element={
@@ -77,18 +77,11 @@ function App() {
               path="new"
               element={
                 <LoginState>
-                  <New inputs={userInputs} title="Thêm nhà mới" />
+                  <New inputs={userInputs} title="Thêm sản phẩm mới" />
                 </LoginState>
               }
             />
-            <Route
-              path="users"
-              element={
-                <LoginState>
-                  <UsersList inputs={userInputs} title="Add new user" />
-                </LoginState>
-              }
-            />
+
             <Route
               path="room"
               element={
@@ -98,7 +91,14 @@ function App() {
               }
             />
           </Route>
-
+          <Route
+            path="users"
+            element={
+              <LoginState>
+                <UsersList inputs={userInputs} title="Người dùng" />
+              </LoginState>
+            }
+          />
           <Route path="products">
             <Route
               index

@@ -19,7 +19,6 @@ const New = ({ inputs, title }) => {
   const { register, watch, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (e, v) => {
-    console.log(e)
     const headers = { ...e };
     console.log(headers)
     axios.post('http://localhost:1402/products/create', { ...e })
@@ -79,7 +78,7 @@ const New = ({ inputs, title }) => {
                   <input name={input.id} type={input.type} {...register(input.id)} placeholder={input.placeholder} />
                 </div>
               ))}
-              <div className="formInput">
+              {/* <div className="formInput">
                 <label>Tag Địa Điểm</label>
 
                 <select name="category" {...register("category")}>
@@ -89,18 +88,18 @@ const New = ({ inputs, title }) => {
                   <option value={"DD24"}>Hồ Chí Minh</option>
                   <option value={"DD25"}>Hà nội</option>
                 </select>
-              </div>
+              </div> */}
               <div className="formInput">
                 <label>
                   Link hình
                 </label>
+
                 <input type="text" name="image" {...register("image")} placeholder={"Link hình"} />
-                <button onClick={e => { window.open("https://cloudinary.com/console/c-f91fcdd89730f287bfa741ec9e6ccf/media_library/folders/home") }}>Thêm Hình</button>
+                {/* <button onClick={e => { window.open("https://cloudinary.com/console/c-f91fcdd89730f287bfa741ec9e6ccf/media_library/folders/home") }}>Thêm Hình</button> */}
               </div>
               <div className="formInput">
+                <button class="add absolute" type="submit">Gửi</button>
               </div>
-
-              <button class="add absolute" type="submit">Gửi</button>
             </form>
           </div>
         </div>

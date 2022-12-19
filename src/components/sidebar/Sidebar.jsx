@@ -1,13 +1,12 @@
-import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import HouseIcon from '@mui/icons-material/House';
 import PeopleIcon from '@mui/icons-material/People';
-import { Link } from "react-router-dom";
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import { DarkModeContext } from "../../context/darkModeContext";
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import { useContext } from "react";
 import { useCookies } from "react-cookie";
-import ReceiptIcon from '@mui/icons-material/Receipt';
+import { Link } from "react-router-dom";
+import { DarkModeContext } from "../../context/darkModeContext";
+import "./sidebar.scss";
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   const [getCookies, setCookies] = useCookies();
@@ -15,7 +14,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Traveloka</span>
+          <span className="logo">NHT</span>
         </Link>
       </div>
       <hr />
@@ -29,20 +28,20 @@ const Sidebar = () => {
             </Link>
           </li>
           <p className="title">DANH SÁCH</p>
-         <Link to="/users/users" style={{ textDecoration: "none" }}>
+          <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PeopleIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <HouseIcon className="icon" />
               <span>Product</span>
             </li>
           </Link>
           <Link to="/payment" style={{ textDecoration: "none" }}>
-           <li> 
+            <li>
               <ReceiptIcon className="icon" />
               <span>Receipt</span>
             </li>

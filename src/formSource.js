@@ -17,18 +17,18 @@ export const userInputs = [
     type: "number",
     placeholder: "50",
   },
-   {
+  {
     id: "quanity",
-    label: "Quanity",
+    label: "Số lượng sản phẩm",
     type: "number",
     placeholder: "50",
   },
-   {
-    id: "quanity",
-    label: "Quanity",
-    type: "number",
-    placeholder: "50",
-  },
+  //  {
+  //   id: "star",
+  //   label: "Quanity",
+  //   type: "number",
+  //   placeholder: "0",
+  // },
 ];
 export const roomInputs = [
   {
